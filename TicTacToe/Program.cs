@@ -18,29 +18,33 @@ namespace TicTacToe
         {
             int player = 2;
             int input = 0;
-            bool inputCorrect = true;
+            bool inputCorrect = true;            
             
             do
             {
+                // Updates the play field to 'X' or 'O'
+                #region
                 if (player == 2)
                 {
                     player = 1;
-                    SetPlayerSymbol(player, input);
+                    SetPlayerSymbol('X', input);
                 }
                 else if(player == 1)
                 {
                     player = 2;
-                    SetPlayerSymbol(player, input);                    
+                    SetPlayerSymbol('O', input);                    
                 }
 
                 SetField();
+                #endregion
 
-                #region
+                //  Check if we have a winner or draw and reset the game
+                #region 
                 char[] playerChars = { 'X', 'O' };
 
                 foreach (char item in playerChars)
                 {
-                    // Check Horizontal
+                            // Check Horizontal
                     if (   (playField[0, 0] == item && playField[0, 1] == item && playField[0, 2] == item)
                         || (playField[1, 0] == item && playField[1, 1] == item && playField[1, 2] == item)
                         || (playField[2, 0] == item && playField[2, 1] == item && playField[2, 2] == item)
@@ -83,8 +87,9 @@ namespace TicTacToe
                         break;
                     }
                 }
-                #endregion
+                #endregion  
 
+                //  this keeps looping while the input is invalid
                 #region
                 do
                 {
@@ -143,7 +148,7 @@ namespace TicTacToe
                 } while (!inputCorrect);
                 #endregion
 
-            } while (true);
+            } while (true);            
         }
 
         public static void SetField()
@@ -176,19 +181,8 @@ namespace TicTacToe
             SetField();
             turns = 0;        }
 
-        public static void SetPlayerSymbol(int player, int input)
-        {
-            char playerSymbol = ' ';
-
-            if(player == 1)
-            {
-                playerSymbol = 'X';
-            }
-            else if(player == 2)
-            {
-                playerSymbol = 'O';
-            }          
-
+        public static void SetPlayerSymbol(char playerSymbol, int input)
+        {           
             switch (input)
             {
                 case 1:
